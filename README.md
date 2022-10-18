@@ -352,7 +352,9 @@ fabs(x); fmod(x, y);        // Absolute value, x mod y
 ```
 
 ## `assert.h`, `cassert` (Debugging Aid)
+Exceptions are used for run-time error conditions (IO errors, out of memory, can't get a database connection, etc.).
 
+Assertions are used for coding errors (this method doesn't accept nulls, and the developer passed one anyway).
 ```cpp
 #include <cassert>        // Include iostream (std namespace)
 assert(e);                // If e is false, print message and abort

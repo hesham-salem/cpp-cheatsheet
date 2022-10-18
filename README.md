@@ -569,3 +569,32 @@ future<int> fut =         // result of async function
 // do some other work 
 cout << fut.get();        // get result of async function. Wait if needed.
 ```
+
+```cpp
+enum class type
+{
+  _3G,
+  _4G,
+  _5G,
+};
+union network
+{
+  int G3;
+  int G4;
+  int G5;
+};
+struct network_type
+{
+  network _network;
+  type net;
+};
+
+network_type net_work;
+
+int main()
+{
+  net_work.net = type::_3G;
+  if (net_work.net == type::_3G)
+    net_work._network.G3 = 50;
+}
+```

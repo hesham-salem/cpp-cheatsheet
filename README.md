@@ -517,7 +517,27 @@ using ms =                // Define ms as floating point duration
 cout << duration_cast<ms>(to - from)
   .count() << "ms";
 ```
+### chrono in more details 
 
+```cpp
+int main()
+{
+  /*  std::chrono::time_point<std::chrono::system_clock, std::chrono::duration<int, std::ratio<1, 1000000000L>>> start = std::chrono::system_clock::now();
+   std::chrono::time_point<std::chrono::system_clock, std::chrono::duration<int, std::nano>> start = std::chrono::system_clock::now();
+   std::chrono::time_point<std::chrono::system_clock, std::chrono::system_clock::duration> start = std::chrono::system_clock::now();
+   std::chrono::time_point<std::chrono::system_clock> start = std::chrono::system_clock::now();
+   std::chrono::system_clock::time_point start = std::chrono::system_clock::now(); */
+  auto before_start = std::chrono::system_clock::now();
+  auto start = std::chrono::system_clock::now();
+  auto end = std::chrono::system_clock::now();
+  time_t w = std::chrono::system_clock::to_time_t(end); // long w = end.time_since_epoch().count()
+  end = std::chrono::system_clock::from_time_t(w);
+  std::chrono::duration<size_t, std::ratio<1, 1000000000L>> the_duration = end - start; // auto ee = duration_cast<ms>(dd);
+  before_start += the_duration;
+  auto duration_minu = std::chrono::duration_cast<std::chrono::minutes>(the_duration);
+  // operator overloadong return duration
+}
+  ```
 ## `thread` (Multi-threading library)
 ```cpp
 #include <thread>         // Include thread

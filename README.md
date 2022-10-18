@@ -569,7 +569,7 @@ future<int> fut =         // result of async function
 // do some other work 
 cout << fut.get();        // get result of async function. Wait if needed.
 ```
-
+## share the same memory
 ```cpp
 enum class type
 {

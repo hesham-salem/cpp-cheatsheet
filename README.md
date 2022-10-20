@@ -620,3 +620,54 @@ int main()
     net_work._network.G3 = 50;
 }
 ```
+## move semantic
+## Rvalue  
+
+example :
+
+literal : 5,7,9     return from function    x=8;// 8 is Rvalue
+
+Lvalue :  has name or address
+
+## move semantic 
+
+​		it is just type casting  output =static_cast< T &&>(input) ;
+
+to get Rvalue reference from variable 
+
+
+```cpp
+
+binding Rvalue reference
+
+T var= Rvalue reference
+
+T& var =Rvalue reference
+
+```
+```
+
+where input is variable and output may be variable or lvalue reference  
+
+
+```cpp
+
+##example of using move sematic :
+struct mynote
+{
+  int *data;
+  int size;
+};
+
+void just_move(mynote &v, mynote &&w)
+{
+ v.data = w.data; // we move the sematic value to 
+ v.size = w.size;//we move //5 in w.size and bind it withv.size
+ w.size = 0;// not bind to 5 any more
+ w.data=nullptr //prevent the e to point into the same address
+}
+e.size=5;
+just_move(r,move(e));
+//e.size==0; and e.data=nullptr 
+//r.size=5 
+```

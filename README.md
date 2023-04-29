@@ -7,8 +7,7 @@ The document is hosted on https://github.com/mortennobel/cpp-cheatsheet. Any com
 ## Preprocessor
 
 ```cpp
-                            // Comment to end of line
-                            /* Multi-line comment */
+                         
 #include  <stdio.h>         // Insert standard header file
 #include "myfile.h"         // Insert file in current directory
 #define X some text         // Replace X with some text
@@ -31,18 +30,12 @@ The document is hosted on https://github.com/mortennobel/cpp-cheatsheet. Any com
 '\n', '\\', '\'', '\"'      // Newline, backslash, single quote, double quote
 "string\n"                  // Array of characters ending with newline and \0
 "hello" "world"             // Concatenated strings
-true, false                 // bool constants 1 and 0
-nullptr                     // Pointer type with the address of 0
 ```
 
 ## Declarations
 
 ```cpp
-int x;                      // Declare x to be an integer (value undefined)
-int x=255;                  // Declare and initialize x to 255
 short s; long l;            // Usually 16 or 32 bit integer (int may be either)
-char c='a';                 // Usually 8 bit character
-unsigned char u=255;
 signed char s=-1;           // char might be either
 unsigned long x =
   0xffffffffL;              // short, int, long are signed
@@ -53,10 +46,8 @@ int a[10];                  // Array of 10 ints (a[0] through a[9])
 int a[]={0,1,2};            // Initialized array (or a[3]={0,1,2}; )
 int a[2][2]={{1,2},{4,5}};  // Array of array of ints
 char s[]="hello";           // String (6 elements including '\0')
-std::string s = "Hello"     // Creates string object with value "Hello"
 std::string s = R"(Hello
 World)";                    // Creates string object with value "Hello\nWorld"
-int* p;                     // p is a pointer to (address of) int
 char* s="hello";            // s points to unnamed array containing "hello"
 void* p=nullptr;            // Address of untyped memory (nullptr is 0)
 int& r=x;                   // r is a reference to (alias of) int x
@@ -93,9 +84,6 @@ extern int x;               // Information only, declared elsewhere
 ## Statements
 
 ```cpp
-x=y;                        // Every expression is a statement
-int x;                      // Declarations are statements
-;                           // Empty statement
 {                           // A block is a single statement
     int x;                  // Scope of x is from declaration to end of block
 }
@@ -128,9 +116,6 @@ catch (...) { c; }          // If a throws something else, jump here
 ## Functions
 
 ```cpp
-int f(int x, int y);        // f is a function taking 2 ints and returning int
-void f();                   // f is a procedure taking no arguments
-void f(int a=0);            // f() is equivalent to f(0)
 f();                        // Default return type is int
 inline f();                 // Optimize for speed
 f() { statements; }         // Function definition (must be global)
@@ -166,11 +151,7 @@ T::X                        // Name X defined in class T
 N::X                        // Name X defined in namespace N
 ::X                         // Global name X
 
-t.x                         // Member x of struct or class t
 p-> x                       // Member x of struct or class pointed to by p
-a[i]                        // i'th element of array a
-f(x,y)                      // Call to function f with arguments x and y
-T(x,y)                      // Object of class T initialized with x and y
 x++                         // Add 1 to x, evaluates to original x (postfix)
 x--                         // Subtract 1 from x, evaluates to original x
 typeid(x)                   // Type of x
@@ -182,8 +163,6 @@ const_cast< T>(x)           // Converts x to same type T but not const
 
 sizeof x                    // Number of bytes used to represent object x
 sizeof(T)                   // Number of bytes to represent type T
-++x                         // Add 1 to x, evaluates to new value (prefix)
---x                         // Subtract 1 from x, evaluates to new value
 ~x                          // Bitwise complement of x
 !x                          // true if x is 0, else false (1 or 0 in C)
 -x                          // Unary minus
@@ -197,12 +176,8 @@ delete p                    // Destroy and free object at address p
 delete[] p                  // Destroy and free array of objects at p
 (T) x                       // Convert x to T (obsolete, use .._cast<T>(x))
 
-x * y                       // Multiply
-x / y                       // Divide (integers round toward 0)
 x % y                       // Modulo (result has sign of x)
 
-x + y                       // Add, or \&x[y]
-x - y                       // Subtract, or number of elements from *x to *y
 x << y                      // x shifted y bits to left (x * pow(2, y))
 x >> y                      // x shifted y bits to right (x / pow(2, y))
 
@@ -670,4 +645,31 @@ e.size=5;
 just_move(r,move(e));
 //e.size==0; and e.data=nullptr 
 //r.size=5 
+```
+
+## algorithms
+```c++
+        auto x = find_if(v.begin(), v.end(),  [](int i) { return i % 2 == 0; });
+        
+        auto y = search(v.begin(), v.end(), v2.begin(), v2.end());
+        
+        int z = count(v.begin(), v.end(), 9);
+        sort(v.begin(), v.end());
+        is_sorted(v.begin(), v.end());
+        int value= max(8, 2) ;
+     
+        reverse(v.begin(), v.end());
+        auto otherEnd = unique(v.begin(), v.end());
+        
+        int acc = accumulate(v.begin(), v.end(), 0);
+        copy(v.begin(), v.end(), back_inserter(v3));
+        for_each(v3.begin(), v3.end(), [](const int &i){ cout << "element : " << i << endl; });
+
+        auto max = max_element(v.begin(), v.end());
+         auto min = minmax_element(v6.begin(), v6.begin());
+
+        auto mh = mismatch(v.begin(), v.end(), v4);
+        auto eq = equal(v6.begin(), v6.end(), v5.begin());
+        auto c = minmax({1, 5, 3, 8});
+        fill(v6.begin(), (v6.begin() + 3), 15);
 ```

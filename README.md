@@ -477,13 +477,17 @@ fill(v6.begin(), (v6.begin() + 3), 15);
 for_each(v3.begin(), v3.end(), [](const int &i){ cout << "element : " << i << endl; });
  auto x = find_if(v.begin(), v.end(),  [](int i) { return i % 2 == 0; });
         
-        
-        auto y = search(v.begin(), v.end(), v2.begin(), v2.end());
+        ### for containers
+auto y = search(v.begin(), v.end(), v2.begin(), v2.end());// v= 10 20 30 40 50 60 70 80 90 ? and v2 =40 50 60
+                                                          // y=          ^        and if not found y iterate on ?
         
      
-        auto otherEnd = unique(v.begin(), v.end());
-        
-        int acc = accumulate(v.begin(), v.end(), 0);
+auto afterEnd_iterator = unique(v.begin(), v.end()); //  int v[] = {10,20,20,20,20,20,30,30,20,20,10};
+                                                    //afterEnd_iterator = // 10 20 30 20 10 ?  ?  ?  ?
+                                                         //                                 ^
+int acc = accumulate(v.begin(), v.end(), 0); //add 0 value to the accumulated value
+
+
         copy(v.begin(), v.end(), back_inserter(v3));
 
          auto min = minmax_element(v6.begin(), v6.begin());

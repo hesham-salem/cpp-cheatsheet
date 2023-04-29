@@ -475,6 +475,27 @@ swap(x, y);               // Exchange values of variables x and y
 sort(a, a+n);             // Sort array a[0]..a[n-1] by <
 sort(a.begin(), a.end()); // Sort vector or deque
 reverse(a.begin(), a.end()); // Reverse vector or deque
+int z = count(v.begin(), v.end(), 9);
+is_sorted(v.begin(), v.end());
+auto max = max_element(v.begin(), v.end());
+fill(v6.begin(), (v6.begin() + 3), 15);
+for_each(v3.begin(), v3.end(), [](const int &i){ cout << "element : " << i << endl; });
+ auto x = find_if(v.begin(), v.end(),  [](int i) { return i % 2 == 0; });
+        
+        
+        auto y = search(v.begin(), v.end(), v2.begin(), v2.end());
+        
+     
+        auto otherEnd = unique(v.begin(), v.end());
+        
+        int acc = accumulate(v.begin(), v.end(), 0);
+        copy(v.begin(), v.end(), back_inserter(v3));
+
+         auto min = minmax_element(v6.begin(), v6.begin());
+
+        auto mh = mismatch(v.begin(), v.end(), v4);
+        auto eq = equal(v6.begin(), v6.end(), v5.begin());
+        auto c = minmax({1, 5, 3, 8});
 ```
 
 ## `chrono` (Time related library)
@@ -645,31 +666,4 @@ e.size=5;
 just_move(r,move(e));
 //e.size==0; and e.data=nullptr 
 //r.size=5 
-```
-
-## algorithms
-```c++
-        auto x = find_if(v.begin(), v.end(),  [](int i) { return i % 2 == 0; });
-        
-        auto y = search(v.begin(), v.end(), v2.begin(), v2.end());
-        
-        int z = count(v.begin(), v.end(), 9);
-        sort(v.begin(), v.end());
-        is_sorted(v.begin(), v.end());
-        int value= max(8, 2) ;
-     
-        reverse(v.begin(), v.end());
-        auto otherEnd = unique(v.begin(), v.end());
-        
-        int acc = accumulate(v.begin(), v.end(), 0);
-        copy(v.begin(), v.end(), back_inserter(v3));
-        for_each(v3.begin(), v3.end(), [](const int &i){ cout << "element : " << i << endl; });
-
-        auto max = max_element(v.begin(), v.end());
-         auto min = minmax_element(v6.begin(), v6.begin());
-
-        auto mh = mismatch(v.begin(), v.end(), v4);
-        auto eq = equal(v6.begin(), v6.end(), v5.begin());
-        auto c = minmax({1, 5, 3, 8});
-        fill(v6.begin(), (v6.begin() + 3), 15);
 ```

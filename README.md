@@ -467,8 +467,8 @@ cout << s.size();         // Number of elements in set
 #include <algorithm>      // Include algorithm (std namespace)
 min(x, y); max(x, y);     // Smaller/larger of x, y (any type defining <)
 swap(x, y);               // Exchange values of variables x and y
-sort(a, a+n);             // Sort array a[0]..a[n-1] by <
 sort(a.begin(), a.end()); // Sort vector or deque
+binary_search(a, a + 10, 50);
 reverse(a.begin(), a.end()); // Reverse vector or deque
 int z = count(v.begin(), v.end(), 9);
 is_sorted(v.begin(), v.end());

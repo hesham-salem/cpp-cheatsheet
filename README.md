@@ -122,6 +122,15 @@ T operator+(T x, T y);      // a+b (if type T) calls operator+(a, b)
 T operator-(T x);           // -a calls function operator-(a)
 T operator++(int);          // postfix ++ or -- (parameter ignored)
 extern "C" {void f();}      // f() was compiled in C
+
+------------------------------------------
+int var=5;
+void print(int * refvar=&var){
+std::cout<<"var "<<*refvar<<std::endl;
+}
+int main(){
+print();
+}
 ```
 
 
@@ -240,6 +249,53 @@ class W: public T, public U {};
                             // Multiple inheritance
 class X: public virtual T {};
                             // Classes derived from X have base T directly
+
+------------------------------------
+
+class shape {
+public :
+ float pi;
+shape(){
+std::cout<<"shape constructor "<<" setting value of pi"<<std::endl;
+pi=3.14;
+}
+~shape(){
+std::cout<<" deconstructor of shape "<<" now pi was destroyed after destroyed of square_ip "<<std::endl;
+
+}
+};
+class rectangle{
+public:
+rectangle(){
+std::cout<<"rectangle constructor"<<std::endl;
+}
+~rectangle(){
+std::cout<<"deconstructor of rectangle"<<std::endl;
+}
+};
+class square  :public shape,public rectangle{
+public:
+float  square_pi;
+square(){
+square_pi=pi;
+std::cout<<"square constructor "<<"pi value is ready  square_pi : "<< square_pi <<std::endl;
+}
+~square(){
+std::cout<<" deconstruct of square "<<"square_pi was destroyed first " <<std::endl;
+
+}
+};
+
+int main(){
+
+square obj;
+//obj.method();
+//obj.method2();
+std::cout<<"------------------start destroying-------------------------------------" <<std::endl;
+}
+
+
+
 ```
 
 All classes have a default copy constructor, assignment operator, and destructor, which perform the

@@ -694,7 +694,7 @@ to get Rvalue reference from variable
   
 
 ```cpp
-
+T&& var =5
 binding Rvalue reference
 
 T var= Rvalue reference

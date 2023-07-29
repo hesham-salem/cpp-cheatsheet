@@ -683,7 +683,7 @@ Lvalue :  has name or address
 ## move semantic 
 
 ​		it is just type casting  output =static_cast< T &&>(input) ;
-
+note that we need to define move constructor to avoid binding member of object to pointers without set the orgin to nullptr to avoid potional buggs by doing this we achieve the meaning of move sementic not just casting as std::move 
 to get Rvalue reference from variable 
 
 
@@ -720,5 +720,53 @@ void just_move(mynote &v, mynote &&w)
 e.size=5;
 just_move(r,move(e));
 //e.size==0; and e.data=nullptr 
-//r.size=5 
+//r.size=5
+
+---------------------------------------------
+#include <iostream>
+
+class Cents
+{
+private:
+    int m_cents{};
+
+public:
+Cents(const Cents & other)=delete;
+Cents(Cents && other)=delete;
+Cents& operator=(const Cents& other)=delete; // copy assignment
+Cents& operator=( Cents&& other)=delete; // copy assignment
+
+    Cents(int cents): m_cents { cents }
+    {}
+    int getCents() const { return m_cents; }
+
+};
+
+
+int main()
+{
+
+
+int && r_ref=50;
+int var=50;
+int & l_ref=r_ref;
+int & l_ref2=var;
+int && r_ref2=static_cast<int&&>(var);
+int & l_ref3=r_ref2;
+int var2=l_ref;
+int var3=r_ref2;
+//int && r_ref2=std::move(var);
+
+Cents obj{5};
+Cents&& obj2=std::move(obj);
+Cents && obj_r_ref=Cents{6};
+Cents  obj_var=Cents{6};
+Cents & obj_l_ref=obj_r_ref;
+Cents & obj_l_ref2=obj_var;
+Cents && obj_r_ref2=static_cast<Cents&&>(obj_var);//or use std::move()
+std::cout<<obj_r_ref2.getCents();
+
+    return 0;
+}
+
 ```

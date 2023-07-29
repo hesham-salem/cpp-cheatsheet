@@ -687,6 +687,12 @@ note that we need to define move constructor to avoid binding member of object t
 to get Rvalue reference from variable 
 
 
+- if no move constructor due to delete move constractor or define copy constructor --> compiler will call copy constructor instead of move construactor
+- the elements of && obj(out from std::move) is lvalue so in move construactor you should use std::move for each element so default move constructor do this
+- we can say that shaping of the statement of move constructor by passing rvalue reference to distanguish between calling move constructor or copy constructor
+  
+  
+
 ```cpp
 
 binding Rvalue reference
@@ -723,7 +729,8 @@ just_move(r,move(e));
 //r.size=5
 
 ---------------------------------------------
-#include <iostream>
+//here you are not construct new obj you just binding one to aready existed one
+
 
 class Cents
 {
@@ -746,7 +753,7 @@ Cents& operator=( Cents&& other)=delete; // copy assignment
 int main()
 {
 
-
+//test for buit-in datatype
 int && r_ref=50;
 int var=50;
 int & l_ref=r_ref;
@@ -766,7 +773,6 @@ Cents & obj_l_ref2=obj_var;
 Cents && obj_r_ref2=static_cast<Cents&&>(obj_var);//or use std::move()
 std::cout<<obj_r_ref2.getCents();
 
-    return 0;
 }
 
 ```
